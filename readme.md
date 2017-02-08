@@ -8,7 +8,7 @@ What we are looking to do now is also make this available for iOS solutions.
 
 ## Background
 
-All static extension methods on System.Reactive.Observable go through a private member of the Observable class that implements the private interface IQueryLanguage. 
+All static extension methods on System.Reactive.Observable go through a private member of the Observable class that implements the private interface IQueryLanguage https://github.com/Reactive-Extensions/Rx.NET/blob/master/Rx.NET/Source/System.Reactive.Linq/Reactive/Linq/IQueryLanguage.cs .
 
 We use private reflection to both locate and set the field but it seems impossible to create an implementation of this private IQueryLanguage without being a friend assembly to System.Reactive.Linq.
 

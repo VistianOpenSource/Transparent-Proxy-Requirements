@@ -13,24 +13,22 @@ namespace TransparentProxyRequirements
     {
         static void Main(string[] args)
         {
-            // this is how to code works on Android/Console projects
+            // this is how the code works on Android/Console projects
 
+            //ensure reactive extensions is loaded.
             var observableType = typeof(Observable);
 
-            // we look at the hidden field s_impl to get the existing implementation
-
+            // we look at the hidden field s_impl to get the existing implementation for the query language interface
             var field = observableType.GetField("s_impl", BindingFlags.Static | BindingFlags.NonPublic);
             var originalInterceptor = field.GetValue(null);
 
-            // we create a transparent proxy for the original 
+            // we create a transparent proxy for the original query language implementation
             var interceptor = new QueryLanguageProxy(originalInterceptor).GetTransparentProxy();
 
             // and assign the transparent proxy
             field.SetValue(null,interceptor);
 
-
-            // 
-
+            // now, all operations run through our transparent proxy.
         }
     }
 }
